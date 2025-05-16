@@ -1,0 +1,50 @@
+syntax = "proto3";
+
+package aide_backend;
+
+// User service for authentication and user information
+service UserService {
+  // Get user information by ID
+  rpc GetUserById (UserIdRequest) returns (UserResponse) {}
+}
+
+// Case service for clinical case information
+service CaseService {
+  // Get case information by ID
+  rpc GetCaseById (CaseIdRequest) returns (CaseResponse) {}
+}
+
+// Request message for user ID
+message UserIdRequest {
+  string user_id = 1;
+}
+
+// Response message containing user information
+message UserResponse {
+  string id = 1;
+  string email = 2;
+  string name = 3;
+  string role = 4;
+}
+
+// Request message for case ID
+message CaseIdRequest {
+  string case_id = 1;
+}
+
+// Response message containing case information
+message CaseResponse {
+  string id = 1;
+  string title = 2;
+  string description = 3;
+  repeated CaseStep steps = 4;
+}
+
+// Case step information
+message CaseStep {
+  string id = 1;
+  string type = 2;
+  string description = 3;
+  repeated string correct_answers = 4;
+  int32 points = 5;
+} 
