@@ -13,7 +13,7 @@ export default registerAs('app', () => ({
   /**
    * Application port
    */
-  port: parseInt(process.env.PORT || '3000', 10),
+  port: parseInt(process.env.PORT || '5000', 10),
   
   /**
    * JWT secret key for authentication

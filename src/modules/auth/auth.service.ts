@@ -2,7 +2,7 @@ import { Inject, Injectable, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { ClientGrpc } from '@nestjs/microservices';
 import { firstValueFrom } from 'rxjs';
-import { UserService } from '../../interfaces/grpc/aide-backend.interface';
+import { UserResponse, UserService } from '../../interfaces/grpc/aide-backend.interface';
 import { JwtPayload } from './strategies/jwt.strategy';
 
 /**
@@ -30,11 +30,11 @@ export class AuthService {
    * @param userId User ID
    * @returns User data
    */
-  async validateUser(userId: string) {
+  async validateUser(userId: string): Promise<UserResponse> {
     try {
       // Call the gRPC service to get user data
       const user = await firstValueFrom(
-        this.userService.getUserById({ user_id: userId }),
+        this.userService.getUserById({ user_id: userId })
       );
       
       if (!user) {

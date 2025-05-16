@@ -8,7 +8,7 @@ import { firstValueFrom } from 'rxjs';
 import { SimulationSession } from './entities/simulation-session.entity';
 import { CreateSimulationSessionDto } from './dto/create-simulation-session.dto';
 import { UpdateSimulationSessionDto } from './dto/update-simulation-session.dto';
-import { CaseService } from '../../interfaces/grpc/aide-backend.interface';
+import { CaseResponse, CaseService } from '../../interfaces/grpc/aide-backend.interface';
 
 /**
  * Simulation sessions service
@@ -41,7 +41,7 @@ export class SimulationSessionsService {
     try {
       // Verify that the case exists in aide-backend
       await firstValueFrom(
-        this.caseService.getCaseById({ case_id: createDto.caseId }),
+        this.caseService.getCaseById({ case_id: createDto.caseId })
       );
       
       const session = this.sessionRepository.create({

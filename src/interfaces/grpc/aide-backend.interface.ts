@@ -1,3 +1,5 @@
+import { Observable } from 'rxjs';
+
 /**
  * Interface definitions for gRPC communication with aide-backend service
  */
@@ -36,9 +38,9 @@ export interface CaseResponse {
 
 // Service interface definitions
 export interface UserService {
-  getUserById(data: UserIdRequest): Promise<UserResponse>;
+  getUserById(data: UserIdRequest): Observable<UserResponse>;
 }
 
 export interface CaseService {
-  getCaseById(data: CaseIdRequest): Promise<CaseResponse>;
+  getCaseById(data: CaseIdRequest): Observable<CaseResponse>;
 } 
